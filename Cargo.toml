@@ -1,0 +1,75 @@
+[workspace]
+members = [
+    "crates/email_validator_api",
+    "crates/email_core",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.87.0"
+authors = ["Bernardo <bernardogazola@pm.me>"]
+license = "MIT"
+repository = "https://github.com/bernardogazola/validmint-api"
+homepage = "https://validmint.com"
+description = "High-performance email domain validation API"
+keywords = ["email", "validation", "api", "disposable", "dns"]
+categories = ["email", "web-programming::http-server", "api-bindings"]
+
+[workspace.dependencies]
+# Web framework and async runtime
+axum = "0.8.4"
+tokio = { version = "1.45.0", features = ["full"] }
+tower = "0.5.1"
+tower-http = { version = "0.6.2", features = ["trace", "cors", "compression-gzip"] }
+
+# DNS resolution
+hickory-resolver = { version = "0.24.1", features = ["dns-over-https-rustls"] }
+
+# Data structures and algorithms
+fastbloom = "0.12.0"
+textdistance = "1.0.3"
+
+# Serialization
+serde = { version = "1.0.216", features = ["derive"] }
+serde_json = "1.0.132"
+
+# Security and hashing
+sha2 = "0.10.8"
+uuid = { version = "1.11.0", features = ["v4"] }
+
+# Observability
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter", "json"] }
+axum-tracing-opentelemetry = "0.29.0"
+opentelemetry = "0.30.0"
+opentelemetry-otlp = "0.30.0"
+opentelemetry_sdk = { version = "0.30.0", features = ["rt-tokio"] }
+
+# Configuration
+figment = { version = "0.10.19", features = ["toml", "env"] }
+
+# Email validation
+email_address = "0.2.9"
+
+# Metrics
+prometheus = "0.14.0"
+
+# Rate limiting (optional, disabled in prod)
+tower_governor = "0.7.0"
+
+# Error handling
+anyhow = "1.0.93"
+thiserror = "2.0.3"
+
+# Testing
+wiremock = "0.6.2"
+tokio-test = "0.4.4"
+
+# Development dependencies
+pretty_assertions = "1.4.1"
+
+# Additional dependencies for API server
+chrono = { version = "0.4.38", features = ["serde"] }
+futures = "0.3.31"

@@ -1,0 +1,52 @@
+[package]
+name = "email_core"
+version ={ workspace = true }
+edition ={ workspace = true }
+rust-version ={ workspace = true }
+authors ={ workspace = true }
+license ={ workspace = true }
+repository ={ workspace = true }
+description = "Core email domain validation logic"
+keywords ={ workspace = true }
+categories ={ workspace = true }
+
+[dependencies]
+# DNS resolution
+hickory-resolver ={ workspace = true }
+
+# Data structures
+fastbloom ={ workspace = true }
+textdistance ={ workspace = true }
+
+# Serialization
+serde ={ workspace = true }
+serde_json ={ workspace = true }
+
+# Async runtime
+tokio ={ workspace = true }
+
+# Security
+sha2 ={ workspace = true }
+
+# Email validation
+email_address ={ workspace = true }
+
+# Error handling
+anyhow ={ workspace = true }
+thiserror ={ workspace = true }
+
+# Logging
+tracing ={ workspace = true }
+
+# Optional SMTP probing
+lettre = { version = "0.11.12", default-features = false, features = ["smtp-transport", "tokio1-rustls-tls"], optional = true }
+
+[features]
+default = []
+smtp_probe = ["dep:lettre"]
+dmarc = []
+
+[dev-dependencies]
+tokio-test ={ workspace = true }
+pretty_assertions ={ workspace = true }
+wiremock ={ workspace = true }

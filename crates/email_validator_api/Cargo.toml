@@ -1,0 +1,71 @@
+[package]
+name = "email_validator_api"
+version = { workspace = true }
+edition = { workspace = true }
+rust-version = { workspace = true }
+authors = { workspace = true }
+license = { workspace = true }
+repository = { workspace = true }
+homepage = { workspace = true }
+description = { workspace = true }
+keywords = { workspace = true }
+categories = { workspace = true }
+
+[dependencies]
+# Local dependencies
+email_core = { path = "../email_core" }
+
+# Web framework
+axum = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+
+# Async runtime
+tokio = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Observability
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+axum-tracing-opentelemetry = { workspace = true }
+opentelemetry = { workspace = true }
+opentelemetry-otlp = { workspace = true }
+opentelemetry_sdk = { workspace = true }
+
+# Configuration
+figment = { workspace = true }
+
+# Metrics
+prometheus = { workspace = true }
+
+# Rate limiting (disabled in production)
+tower_governor = { workspace = true, optional = true }
+
+# Error handling
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+
+# Utilities
+uuid = { workspace = true }
+
+# Additional dependencies
+chrono = { workspace = true }
+futures = { workspace = true }
+
+# JWT Authentication
+jsonwebtoken = "9.3.1"
+
+[features]
+default = ["smtp_probe", "dmarc", "full_logs"]
+smtp_probe = ["email_core/smtp_probe"]
+dmarc = ["email_core/dmarc"]
+full_logs = []
+local_rate_limit = ["dep:tower_governor"]
+
+[dev-dependencies]
+wiremock = { workspace = true }
+tokio-test = { workspace = true }
+pretty_assertions = { workspace = true }

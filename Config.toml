@@ -1,0 +1,59 @@
+# Email Domain Validator API Configuration
+# This file provides default configuration values that can be overridden
+# by environment variables prefixed with EMAIL_API_
+
+[server]
+host = "0.0.0.0"
+port = 3000
+max_connections = 1000
+request_timeout_secs = 30
+graceful_shutdown = true
+shutdown_timeout_secs = 30
+
+[validation]
+# DNS resolver settings
+dns_timeout_ms = 500
+dns_attempts = 2
+dns_cache_size = 10000
+dns_min_ttl_secs = 60
+
+# Bloom filter settings
+bloom_filter_fp_rate = 0.0001  # 0.01% false positive rate
+
+# Feature flags
+enable_smtp_probe = true
+enable_dmarc_analysis = true
+
+# SMTP probe settings
+smtp_timeout_ms = 2000
+
+[observability]
+# Logging settings
+json_logs = false
+log_level = "info"
+
+# Tracing settings
+enable_tracing = false
+service_name = "email-validator-api"
+enable_metrics = false
+metrics_namespace = "email_validator"
+
+# Optional OTLP endpoint for traces
+# otlp_endpoint = "https://traces.example.com"
+
+[security]
+# Rate limiting (backup to RapidAPI)
+enable_rate_limiting = false
+rate_limit_rpm = 60
+rate_limit_burst = 10
+
+# Request limits
+enable_body_limits = true
+max_body_size_bytes = 1024
+
+# CORS settings
+enable_cors = true
+cors_origins = []  # Empty = allow all
+
+# Privacy settings
+# privacy_salt = "base64-encoded-salt"  # Set via environment variable

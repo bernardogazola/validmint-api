@@ -1,0 +1,58 @@
+# Build artifacts
+target/
+# Note: Cargo.lock is needed for Docker builds to ensure reproducible dependencies
+
+# Documentation
+docs/
+*.md
+LICENSE
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+
+# CI/CD
+.github/
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Testing
+coverage/
+*.prof
+
+# Node modules (if any)
+node_modules/
+
+# IDEs
+*.iml
+*.ipr
+*.iws
+
+# Stress testing files
+stress_test.rs
+stress_test_Cargo.toml
+run_stress_test.sh
+
+# RapidAPI documentation
+LONG_DESCRIPTION.md
+TERMS.md
+DEPLOY.md
